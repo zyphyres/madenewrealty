@@ -1,0 +1,71 @@
+SIGN UP:(New Registration) 
+Name :
+Email Address : 
+Contract No : 
+Country : 
+
+User :
+( ) Homeowner / Buyer
+( ) Broker / Agent 
+
+    Click to Register 
+
+
+
+Users: 
+1. Homeowner /Buyer
+
+Upon Registering (direct to forms) 
+Forms : 
+I.  Homeowner/Buyer:
+Personal Data (Details) 
+Questions 
+
+* Do you have an appointed Broker or Agent? ( ) Y ( ) N
+Referror Broker / Agent : 
+
+Objective: 
+() To Sell personal property 
+() To Buy a property 
+() To Rent a property 
+() Other services 
+
+    To Sell  (redirect to Selling information questions) 
+
+
+Type ownership 
+() owned
+() parents
+() relatives 
+() Friends 
+
+
+    To Buy a property  (redirect to Buyer information questions) 
+
+
+
+Type of Property 
+() single detached 
+() duplex 
+() no. of storey
+() no number of bedroom
+() others
+ 
+
+    To Rent a property 
+
+
+(redirect to Buyer information questions) 
+
+~~~~~~~~~~~~~~~~~~
+
+II. Broker / Agent 
+
+Application Form: 
+Objective :
+ ( ) To Sell property
+Posting of Selling Items 
+() To Buy 
+() Rent 
+
+*with Admin Approval
