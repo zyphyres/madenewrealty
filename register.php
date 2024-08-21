@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -43,7 +44,7 @@ if (isset($_POST['reg'])) {
                 mysqli_query($con, $sql_token);
 
                 // Determine the appropriate account creation page based on user type
-                $creation_page = ($utype === 'broker') ? 'broker-account-creation.php' : 'homeowner-account-creation.php';
+                $creation_page = 'homeowner-account-creation.php';
 
                 // Prepare email content
                 $mail = new PHPMailer(true);
@@ -87,9 +88,10 @@ if (isset($_POST['reg'])) {
 ?>
 
 <?php include("include/mainheader.php"); ?>
+
 <body>
     <div id="page-wrapper">
-        <div class="row"> 
+        <div class="row">
             <div class="page-wrappers login-body full-row bg-gray">
                 <div class="login-wrapper">
                     <div class="container">
@@ -100,6 +102,16 @@ if (isset($_POST['reg'])) {
                                     <p class="account-subtitle">Access to our dashboard</p>
                                     <?php echo $error; ?><?php echo $msg; ?>
                                     <form method="post" enctype="multipart/form-data">
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="utype" value="homeowner" checked>Homeowner/Buyer
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="utype" value="broker">Broker/Agent
+                                            </label>
+                                        </div>
                                         <div class="form-group">
                                             <input type="text" name="name" class="form-control" placeholder="Your Name*" required>
                                         </div>
@@ -112,23 +124,14 @@ if (isset($_POST['reg'])) {
                                         <div class="form-group">
                                             <input type="text" name="country" class="form-control" placeholder="Country" required>
                                         </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="utype" value="homeowner" checked>Homeowner/Buyer
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="utype" value="broker">Broker/Agent
-                                            </label>
-                                        </div>
+
                                         <!-- <div class="form-group">
                                             <label class="col-form-label"><b>User Image</b></label>
                                             <input class="form-control" name="uimage" type="file" required>
                                         </div> -->
-										<div style="display: flex; justify-content: center; align-items: center; margin-top:20px;">
-                                        <button class="btn btn-success" style="border-radius: 10px;" name="reg" value="Register" type="submit">Register</button>
-										</div>
+                                        <div style="display: flex; justify-content: center; align-items: center; margin-top:20px;">
+                                            <button class="btn btn-success" style="border-radius: 10px;" name="reg" value="Register" type="submit">Register</button>
+                                        </div>
                                     </form>
                                     <div class="text-center dont-have">Already have an account? <a href="index.php">Login</a></div>
                                 </div>
@@ -139,8 +142,23 @@ if (isset($_POST['reg'])) {
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script> 
-    <script src="js/bootstrap.min.js"></script> 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle broker fields based on the selected radio button
+            $('input[name="utype"]').change(function() {
+                if ($(this).val() === 'broker') {
+                    $('#broker-fields').show(); // Show broker fields
+                } else {
+                    $('#broker-fields').hide(); // Hide broker fields
+                }
+            });
+        });
+    </script>
+
 </body>
+
 </html>

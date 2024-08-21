@@ -1,5 +1,5 @@
 <?php
-include ("config.php");
+include("config.php");
 
 $error = "";
 $msg = "";
@@ -15,6 +15,7 @@ if (isset($_GET['token'])) {
 
     if ($user) {
         // Token is valid
+
         if (isset($_POST['create_password'])) {
             $password = $_POST['password'];
             $confirm_password = $_POST['confirm_password'];
@@ -40,7 +41,7 @@ if (isset($_GET['token'])) {
 }
 ?>
 
-<?php include ("include/mainheader.php"); ?>
+<?php include("include/mainheader.php"); ?>
 
 <body>
     <div id="page-wrapper">
@@ -51,10 +52,21 @@ if (isset($_GET['token'])) {
                         <div class="loginbox">
                             <div class="login-right">
                                 <div class="login-right-wrap">
-                                    <h1>Homeowner Account Creation</h1>
+                                    <h1 class="account-title">Homeowner Account Creation</h1>
                                     <p class="account-subtitle">Access to our dashboard</p>
                                     <?php echo $error; ?><?php echo $msg; ?>
+                                    <label id="user-type" style="display: none;"><?php echo $user['utype']; ?></label>
                                     <form method="post">
+                                        <div id="broker-fields" style="display: none;">
+                                            <div class="form-group">
+                                            <label for="license_number">License Number</label>
+                                                <input type="text" name="license_number" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="agency_name">Agency Name</label>
+                                                <input type="text" name="agency_name" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="password">New Password</label>
                                             <input type="password" name="password" id="password" class="form-control"
@@ -65,12 +77,22 @@ if (isset($_GET['token'])) {
                                             <input type="password" name="confirm_password" id="confirm_password"
                                                 class="form-control" required>
                                         </div>
+                                        <div id="broker-fields" style="display: none;">
+                                            <div class="form-group">
+                                                <input type="text" name="license_number" class="form-control" placeholder="License Number">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="agency_name" class="form-control" placeholder="Agency Name">
+                                            </div>
+                                        </div>
                                         <button type="submit" name="create_password" class="btn btn-primary">Create
                                             Password</button>
+
                                     </form>
                                     <div class="text-center dont-have">Already have an account? <a
                                             href="index.php">Login</a></div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -81,6 +103,21 @@ if (isset($_GET['token'])) {
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Check the value of the hidden label
+            var userType = $('#user-type').text().trim();
+
+            // If the user type is agent, show the broker fields
+            if (userType === 'agent') {
+                $('#broker-fields').show();
+                $('.account-title').text('Broker Account Creation')
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>
