@@ -68,61 +68,101 @@ if (isset($_GET['token'])) {
                                             </div>
                                         </div>
 
-
                                         <label>I. Personal Details</label>
                                         <div class="form-group">
                                             <label for="name">Name</label>
-                                            <input type="text" value="<?php echo $user['uname'] ?>" class="form-control"
-                                                disabled>
+                                            <input type="text" value="<?php echo $user['uname'] ?>" class="form-control" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Email</label>
-                                            <input type="text" value="<?php echo $user['uemail'] ?>" class="form-control"
-                                                disabled>
+                                            <input type="text" value="<?php echo $user['uemail'] ?>" class="form-control" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Phone</label>
-                                            <input type="text" value="<?php echo $user['uphone'] ?>" class="form-control"
-                                                disabled>
+                                            <input type="text" value="<?php echo $user['uphone'] ?>" class="form-control" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Country</label>
-                                            <input type="text" value="<?php echo $user['ucountry'] ?>" class="form-control"
-                                                disabled>
+                                            <input type="text" value="<?php echo $user['ucountry'] ?>" class="form-control" disabled>
                                         </div>
 
-                                        <label>II. Important Questions <span style="color: red;">*</span></label>
+                                        <label>II. Important Question <span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <label>Do you have an appointed Broker or Agent?</label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="Yes" checked>Yes
+                                                    <input type="radio" class="form-check-input" name="uapp" value="Yes">Yes
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="No">No
+                                                    <input type="radio" class="form-check-input" name="uapp" value="No" checked>No
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="form-group" id="appointed"  style="display: none;">
-                                            <label for="password">Referror Broker / Agent : </label>
-                                            <input type="text" name="" id="" class="form-control"
-                                                required>
+                                        <div class="form-group" id="appointed" style="display: none;">
+                                            <label for="agent_name">Referror Broker / Agent :</label>
+                                            <input type="text" name="agent_name" id="agent_name" class="form-control" required>
                                         </div>
+
+                                        <label>III. Objectives <span style="color: red;">*</span></label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="uobb" value="Sell">To Sell a Personal property
+                                            </label>
+                                            <div class="form-group" id="tosell" style="display: none;">
+                                                <label>Type of Ownership</label>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Owned
+                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Parents
+                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Relatives
+                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Friends
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="uobb" value="Buy">To Buy a property
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="uobb" value="Rent">To Rent a Property
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="uobb" value="Other">Other Services
+                                            </label>
+                                        </div>
+
+
+                                        <div class="form-group" id="tosell" style="display: none;">
+                                            <label>Type of Ownership</label>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Owned
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Parents
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Relatives
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Friends
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
 
                                         <div class="form-group">
                                             <label for="password">New Password</label>
-                                            <input type="password" name="password" id="password" class="form-control"
-                                                required>
+                                            <input type="password" name="password" id="password" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="confirm_password">Confirm Password</label>
-                                            <input type="password" name="confirm_password" id="confirm_password"
-                                                class="form-control" required>
+                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
                                         </div>
-
-
 
                                         <div id="broker-fields" style="display: none;">
                                             <div class="form-group">
@@ -132,12 +172,9 @@ if (isset($_GET['token'])) {
                                                 <input type="text" name="agency_name" class="form-control" placeholder="Agency Name">
                                             </div>
                                         </div>
-                                        <button type="submit" name="create_password" class="btn btn-primary">Create
-                                            Password</button>
-
+                                        <button type="submit" name="create_password" class="btn btn-primary">Create Password</button>
                                     </form>
-                                    <div class="text-center dont-have">Already have an account? <a
-                                            href="index.php">Login</a></div>
+                                    <div class="text-center dont-have">Already have an account? <a href="index.php">Login</a></div>
                                 </div>
 
                             </div>
@@ -153,6 +190,22 @@ if (isset($_GET['token'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Show/hide the appointed div based on selected radio button
+            $('input[name="uapp"]').change(function() {
+                if ($(this).val() === 'Yes') {
+                    $('#appointed').show();
+                } else {
+                    $('#appointed').hide();
+                }
+            });
+
+            $('input[name="uobb"]').change(function() {
+                if ($(this).val() === 'Sell') {
+                    $('#tosell').show();
+                } else {
+                    $('#tosell').hide();
+                }
+            });
             // Check the value of the hidden label
             var userType = $('#user-type').text().trim();
 
@@ -161,12 +214,8 @@ if (isset($_GET['token'])) {
                 $('#broker-fields').show();
                 $('.account-title').text('Broker Account Creation')
             }
-
-            
         });
     </script>
-
-
 </body>
 
 </html>
