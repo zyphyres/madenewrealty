@@ -91,19 +91,18 @@ if (isset($_GET['token'])) {
                                             <label>Do you have an appointed Broker or Agent?</label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="Yes">Yes
+                                                    <input type="radio" class="form-check-input" name="uapp" value="AppointagentYes">Yes
                                                 </label>
+
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="No" checked>No
+                                                    <input type="radio" class="form-check-input" name="uapp" value="AppointagentNo" checked>No
                                                 </label>
                                             </div>
+                                            <div class="dynamic-container1" data-value="AppointagentYes"></div>
                                         </div>
-                                        <div class="form-group" id="appointed" style="display: none;">
-                                            <label for="agent_name">Referror Broker / Agent :</label>
-                                            <input type="text" name="agent_name" id="agent_name" class="form-control" required>
-                                        </div>
+
 
                                         <label>III. Objectives <span style="color: red;">*</span></label>
                                         <div class="form-check">
@@ -184,6 +183,12 @@ if (isset($_GET['token'])) {
     <script>
         $(document).ready(function() {
             const htmlContents = {
+                'AppointagentYes': `
+                 <div class="form-group" id="apoint">
+                    <label>Property Details</label>
+                    <input type="text" class="form-control" name="agentName" placeholder="Agent Name">
+                </div>
+                `,
                 'Sell': `
                 <div class="form-group" id="tosell">
                     <label>Type of Ownership</label>
@@ -219,20 +224,32 @@ if (isset($_GET['token'])) {
 
             // Event handler for radio button changes
             $('input[name="uobb"]').change(function() {
-        var selectedValue = $(this).val();
-        
-        // Find the currently visible container and hide it
-        var $currentlyVisibleContainer = $('.dynamic-container').filter(':visible');
-        
-        // Hide the currently visible container
-        $currentlyVisibleContainer.slideUp(400, function() {
-            $(this).empty(); // Clear content after sliding up
-            
-            // Show the new container for the selected value
-            var $newContainer = $('.dynamic-container[data-value="' + selectedValue + '"]');
-            $newContainer.html(htmlContents[selectedValue]).slideDown(400);
-        });
-    });
+                var selectedValue = $(this).val();
+
+                // Find the currently visible container and hide it
+                var $currentlyVisibleContainer = $('.dynamic-container').filter(':visible');
+
+                // Hide the currently visible container
+                $currentlyVisibleContainer.slideUp(400, function() {
+                    $(this).empty(); // Clear content after sliding up
+
+                    // Show the new container for the selected value
+                    var $newContainer = $('.dynamic-container[data-value="' + selectedValue + '"]');
+                    $newContainer.html(htmlContents[selectedValue]).slideDown(400);
+                });
+            });
+            $('input[name="uapp"]').change(function() {
+                var selectedValue = $(this).val();
+
+                $('.dynamic-container1').each(function() {
+                    $(this).slideUp(400, function() {
+                        $(this).empty(); // Clear content after sliding up
+                    });
+                });
+                var $container = $('.dynamic-container1[data-value="' + selectedValue + '"]');
+                $container.html(htmlContents[selectedValue]).slideDown(400);
+
+            });
 
             // Check the value of the hidden label
             var userType = $('#user-type').text().trim();
