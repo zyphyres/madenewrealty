@@ -91,55 +91,63 @@ if (isset($_GET['token'])) {
                                             <label>Do you have an appointed Broker or Agent?</label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="Yes">Yes
+                                                    <input type="radio" class="form-check-input" name="uapp" value="AppointagentYes">Yes
                                                 </label>
+
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="No" checked>No
+                                                    <input type="radio" class="form-check-input" name="uapp" value="AppointagentNo" checked>No
                                                 </label>
                                             </div>
+                                            <div class="dynamic-container1" data-value="AppointagentYes"></div>
                                         </div>
-                                        <div class="form-group" id="appointed" style="display: none;">
-                                            <label for="agent_name">Referror Broker / Agent :</label>
-                                            <input type="text" name="agent_name" id="agent_name" class="form-control" required>
-                                        </div>
+
 
                                         <label>III. Objectives <span style="color: red;">*</span></label>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="uobb" value="Sell">To Sell a Personal property
                                             </label>
-                                            <div class="form-group" id="tosell" style="display: none;">
-                                                <label>Type of Ownership</label>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Owned
-                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Parents
-                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Relatives
-                                                        <input type="radio" class="form-check-input" name="uown" value="Other"> Friends
-                                                    </label>
-                                                </div>
-                                            </div>
+                                            <div class="dynamic-container" data-value="Sell"></div>
 
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="uobb" value="Buy">To Buy a property
                                             </label>
+                                            <div class="dynamic-container" data-value="Buy"></div>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="uobb" value="Rent">To Rent a Property
                                             </label>
+                                            <div class="dynamic-container" data-value="Rent"></div>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="uobb" value="Other">Other Services
                                             </label>
+                                            <div class="dynamic-container" data-value="Other"></div>
                                         </div>
 
 
+<<<<<<< HEAD
+=======
+                                        <!-- <div class="form-group" id="tosell" style="display: none;">
+                                            <label>Type of Ownership</label>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Owned
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Parents
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Relatives
+                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Friends
+                                                </label>
+                                            </div>
+                                        </div> -->
+
+
+>>>>>>> 0d6f4cee101791c096cc0623c47b8e8afd7fc2a7
 
 
                                         <div class="form-group">
@@ -177,22 +185,75 @@ if (isset($_GET['token'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Show/hide the appointed div based on selected radio button
+            const htmlContents = {
+                'AppointagentYes': `
+                 <div class="form-group" id="apoint">
+                    <label>Property Details</label>
+                    <input type="text" class="form-control" name="agentName" placeholder="Agent Name">
+                </div>
+                `,
+                'Sell': `
+                <div class="form-group" id="tosell">
+                    <label>Type of Ownership</label>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="uown" value="Owned"> Owned
+                            <input type="radio" class="form-check-input" name="uown" value="Parents"> Parents
+                            <input type="radio" class="form-check-input" name="uown" value="Relatives"> Relatives
+                            <input type="radio" class="form-check-input" name="uown" value="Friends"> Friends
+                        </label>
+                    </div>
+                </div>
+            `,
+                'Buy': `
+                <div class="form-group" id="tobuy">
+                    <label>Property Details</label>
+                    <input type="text" class="form-control" name="property_details" placeholder="Enter details about the property you want to buy">
+                </div>
+            `,
+                'Rent': `
+                <div class="form-group" id="torent">
+                    <label>Rental Information</label>
+                    <input type="text" class="form-control" name="rental_info" placeholder="Enter rental information">
+                </div>
+            `,
+                'Other': `
+                <div class="form-group" id="toother">
+                    <label>Other Services</label>
+                    <input type="text" class="form-control" name="other_services" placeholder="Specify other services">
+                </div>
+            `
+            };
+
+            // Event handler for radio button changes
+            $('input[name="uobb"]').change(function() {
+                var selectedValue = $(this).val();
+
+                // Find the currently visible container and hide it
+                var $currentlyVisibleContainer = $('.dynamic-container').filter(':visible');
+
+                // Hide the currently visible container
+                $currentlyVisibleContainer.slideUp(400, function() {
+                    $(this).empty(); // Clear content after sliding up
+
+                    // Show the new container for the selected value
+                    var $newContainer = $('.dynamic-container[data-value="' + selectedValue + '"]');
+                    $newContainer.html(htmlContents[selectedValue]).slideDown(400);
+                });
+            });
             $('input[name="uapp"]').change(function() {
-                if ($(this).val() === 'Yes') {
-                    $('#appointed').show();
-                } else {
-                    $('#appointed').hide();
-                }
+                var selectedValue = $(this).val();
+
+                $('.dynamic-container1').each(function() {
+                    $(this).slideUp(400, function() {
+                        $(this).empty(); // Clear content after sliding up
+                    });
+                });
+                var $container = $('.dynamic-container1[data-value="' + selectedValue + '"]');
+                $container.html(htmlContents[selectedValue]).slideDown(400);
+
             });
 
-            $('input[name="uobb"]').change(function() {
-                if ($(this).val() === 'Sell') {
-                    $('#tosell').show();
-                } else {
-                    $('#tosell').hide();
-                }
-            });
             // Check the value of the hidden label
             var userType = $('#user-type').text().trim();
 
@@ -201,6 +262,7 @@ if (isset($_GET['token'])) {
                 $('#broker-fields').show();
                 $('.account-title').text('Broker Account Creation')
             }
+
         });
     </script>
 </body>
