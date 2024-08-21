@@ -132,24 +132,6 @@ if (isset($_GET['token'])) {
                                         </div>
 
 
-<<<<<<< HEAD
-=======
-                                        <!-- <div class="form-group" id="tosell" style="display: none;">
-                                            <label>Type of Ownership</label>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Owned
-                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Parents
-                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Relatives
-                                                    <input type="radio" class="form-check-input" name="uown" value="Other"> Friends
-                                                </label>
-                                            </div>
-                                        </div> -->
-
-
->>>>>>> 0d6f4cee101791c096cc0623c47b8e8afd7fc2a7
-
-
                                         <div class="form-group">
                                             <label for="password">New Password</label>
                                             <input type="password" name="password" id="password" class="form-control" required>
