@@ -59,14 +59,58 @@ if (isset($_GET['token'])) {
                                     <form method="post">
                                         <div id="broker-fields" style="display: none;">
                                             <div class="form-group">
-                                            <label for="license_number">License Number</label>
-                                                <input type="text" name="license_number" class="form-control" >
+                                                <label for="license_number">License Number</label>
+                                                <input type="text" name="license_number" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                            <label for="agency_name">Agency Name</label>
+                                                <label for="agency_name">Agency Name</label>
                                                 <input type="text" name="agency_name" class="form-control">
                                             </div>
                                         </div>
+
+
+                                        <label>I. Personal Details</label>
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" value="<?php echo $user['uname'] ?>" class="form-control"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Email</label>
+                                            <input type="text" value="<?php echo $user['uemail'] ?>" class="form-control"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Phone</label>
+                                            <input type="text" value="<?php echo $user['uphone'] ?>" class="form-control"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Country</label>
+                                            <input type="text" value="<?php echo $user['ucountry'] ?>" class="form-control"
+                                                disabled>
+                                        </div>
+
+                                        <label>II. Important Questions <span style="color: red;">*</span></label>
+                                        <div class="form-group">
+                                            <label>Do you have an appointed Broker or Agent?</label>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="uyes" value="Yes" checked>Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="uno" value="No">No
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="appointed"  style="display: none;">
+                                            <label for="password">Referror Broker / Agent : </label>
+                                            <input type="text" name="" id="" class="form-control"
+                                                required>
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="password">New Password</label>
                                             <input type="password" name="password" id="password" class="form-control"
@@ -77,6 +121,9 @@ if (isset($_GET['token'])) {
                                             <input type="password" name="confirm_password" id="confirm_password"
                                                 class="form-control" required>
                                         </div>
+
+
+
                                         <div id="broker-fields" style="display: none;">
                                             <div class="form-group">
                                                 <input type="text" name="license_number" class="form-control" placeholder="License Number">
@@ -114,6 +161,8 @@ if (isset($_GET['token'])) {
                 $('#broker-fields').show();
                 $('.account-title').text('Broker Account Creation')
             }
+
+            
         });
     </script>
 
