@@ -96,12 +96,12 @@ if (isset($_GET['token'])) {
                                             <label>Do you have an appointed Broker or Agent?</label>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uyes" value="Yes" checked>Yes
+                                                    <input type="radio" class="form-check-input" name="uapp" value="Yes" checked>Yes
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uno" value="No">No
+                                                    <input type="radio" class="form-check-input" name="uapp" value="No">No
                                                 </label>
                                             </div>
                                         </div>
