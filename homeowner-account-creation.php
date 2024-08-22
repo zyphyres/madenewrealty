@@ -34,6 +34,7 @@ if (isset($_GET['token'])) {
             }
         }
     } else {
+
         $error = "<p class='alert alert-warning'>Invalid or expired token.</p>";
     }
 } else {
@@ -97,7 +98,7 @@ if (isset($_GET['token'])) {
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="uapp" value="AppointagentNo" checked>No
+                                                    <input type="radio" class="form-check-input" name="uapp" value="AppointagentNo">No
                                                 </label>
                                             </div>
                                             <div class="dynamic-container1" data-value="AppointagentYes"></div>
